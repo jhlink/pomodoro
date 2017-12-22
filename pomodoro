@@ -48,9 +48,13 @@ def tick(duration):
         interrupt = False
     return interrupt
 
+def play_alarm_simp(): 
+  for i in range(3): 
+    print('\a') 
+    time.sleep(1)
 
 def play_alarm(filename):
-    cmd = ["mpg123", filename]
+    cmd = ["afplay", filename]
     try:
         p = subprocess.Popen(cmd, stdout=DEV_NULL, stderr=subprocess.PIPE)
         p.wait()
@@ -71,7 +75,7 @@ def write_pomo(start, stop, tag):
 
 
 @modifiers.kwoargs('repeat', 'alarm', 'notif')
-def main(work=60, rest=5, repeat=10, alarm=True, notif=False):
+def main(work=30, rest=5, repeat=5, alarm=True, notif=True):
     """
     work : int
         nb of minuntes of work
@@ -98,7 +102,8 @@ def main(work=60, rest=5, repeat=10, alarm=True, notif=False):
         stop = datetime.now()
         write_pomo(start, stop, "work")
         if alarm:
-            play_alarm(ALARM)
+          #play_alarm(ALARM)
+            play_alarm_simp()
         if notif:
             notify('pomodoro', 'Finished pomo, rest now.')
         display("Rest now")
