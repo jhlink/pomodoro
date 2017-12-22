@@ -115,7 +115,7 @@ def main(work=30, rest=5, repeat=5, alarm=True, notif=True):
         write_pomo(start, stop, "rest")
 
         if alarm:
-            play_alarm(ALARM)
+            play_alarm_simp()
         if notif:
             notify('pomodoro', 'Finished rest, work now.')
         display("Cycle complete")
